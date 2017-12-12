@@ -1,0 +1,27 @@
+{
+  "name": "reactive-programming",
+  "version": "1.0.0",
+  "description": "reactive programming slides",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./static"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmShpak/reactive-programming.git"
+  },
+  "keywords": [
+    "rxjs",
+    "slides"
+  ],
+  "author": "Dm.Shpak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DmShpak/reactive-programming/issues"
+  },
+  "homepage": "https://github.com/DmShpak/reactive-programming#readme",
+  "devDependencies": {
+    "http-server": "^0.10.0"
+  }
+}

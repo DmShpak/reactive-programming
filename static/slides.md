@@ -625,3 +625,64 @@ export class Repeat<T> extends Observable<T, never> {
 - Fast and compact
 - Small comunity
 - No good typescript typings
+---
+## Live example
+
+ToDo:
+* Search in wiki by query
+* Filter too short query
+* Filter too fast requests
+
+
+---
+
+Search function
+```js
+function searchWikipedia (term) {
+    return $.ajax({
+        url: 'http://en.wikipedia.org/w/api.php',
+        dataType: 'jsonp',
+        data: {
+            action: 'opensearch',
+            format: 'json',
+            search: term
+        }
+    }).promise();
+}
+```
+
+---
+Get query stream
+```js
+const query$ = Rx.Observable.fromEvent($input, 'keyup')
+      .map( e => e.target.value) // Project the text from the input
+      .filter(text => text.length > 2) // Only if the text is longer than 2 characters
+      .debounce(750) // Pause for 750ms
+      .distinctUntilChanged(); // Only if the value has changed
+``` 
+---
+Use **flatMapLatest** to convert **query$** to **searchResult$**. 
+```js
+const searchResult$ = query$.flatMapLatest(searchWikipedia);
+```
+---
+Subscripe **searchResult$** 
+
+```js
+searcher.subscribe(
+       data => {
+        //render data ther
+      },
+      error =>  {
+          //render error there
+      }
+```
+    
+---
+
+## Links
+[learn rx](https://www.learnrxjs.io/)
+[rx-book](http://xgrommx.github.io/rx-book/content/subjects/index.html)
+[rx marbles](http://rxmarbles.com/)
+[Hot and Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
+---
